@@ -25,7 +25,7 @@ public class Curso {
     @Transient
     private List<Usuario> usuarios;
 
-    public Curso(){
+    public Curso() {
         cursoUsuarios = new ArrayList<>();
         usuarios = new ArrayList<>();
     }
@@ -54,11 +54,11 @@ public class Curso {
         this.cursoUsuarios = cursoUsuarios;
     }
 
-    public void addCursoUsuario(CursoUsuario cursoUsuario){
+    public void addCursoUsuario(CursoUsuario cursoUsuario) {
         this.cursoUsuarios.add(cursoUsuario);
     }
 
-    public void removeCursoUsuario(CursoUsuario cursoUsuario){
+    public void removeCursoUsuario(CursoUsuario cursoUsuario) {
         this.cursoUsuarios.remove(cursoUsuario);
     }
 

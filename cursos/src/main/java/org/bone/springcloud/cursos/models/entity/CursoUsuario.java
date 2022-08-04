@@ -13,7 +13,6 @@ public class CursoUsuario {
     @Column(name = "usuario_id", unique = true)
     private Long usuarioId;
 
-
     public Long getId() {
         return id;
     }

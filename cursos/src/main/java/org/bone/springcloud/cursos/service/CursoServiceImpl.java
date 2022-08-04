@@ -61,7 +61,7 @@ public class CursoServiceImpl implements CursoService {
     @Transactional
     public Optional<Usuario> asignarUsuario(Usuario usuario, Long idCurso) {
         Optional<Curso> optionalCurso = cursoRepository.findById(idCurso);
-        if (optionalCurso.isPresent()){
+        if (optionalCurso.isPresent()) {
             Usuario usuarioMSVC = usuarioClientRest.usuarioPorId(usuario.getId());
 
             addOrRemoveUsuariosDeCurso(optionalCurso, usuarioMSVC, true);
@@ -74,7 +74,7 @@ public class CursoServiceImpl implements CursoService {
     @Transactional
     public Optional<Usuario> crearUsuario(Usuario usuario, Long idCurso) {
         Optional<Curso> optionalCurso = cursoRepository.findById(idCurso);
-        if (optionalCurso.isPresent()){
+        if (optionalCurso.isPresent()) {
             Usuario usuarioMSVC = usuarioClientRest.crearUsuario(usuario);
 
             addOrRemoveUsuariosDeCurso(optionalCurso, usuarioMSVC, true);
@@ -87,7 +87,7 @@ public class CursoServiceImpl implements CursoService {
     @Transactional
     public Optional<Usuario> eliminarUsuario(Usuario usuario, Long idCurso) {
         Optional<Curso> optionalCurso = cursoRepository.findById(idCurso);
-        if (optionalCurso.isPresent()){
+        if (optionalCurso.isPresent()) {
             Usuario usuarioMSVC = usuarioClientRest.usuarioPorId(usuario.getId());
             addOrRemoveUsuariosDeCurso(optionalCurso, usuarioMSVC, false);
             return Optional.of(usuarioMSVC);
@@ -100,10 +100,11 @@ public class CursoServiceImpl implements CursoService {
         Optional<Curso> optionalCurso = cursoRepository.findById(idCurso);
         List<Long> Idusuarios = new ArrayList<>();
 
-        if (optionalCurso.isPresent()){
+        if (optionalCurso.isPresent()) {
             Curso curso = optionalCurso.get();
             if (!curso.getCursoUsuarios().isEmpty()) {
-                optionalCurso.get().getCursoUsuarios().forEach(cursoUsuario -> Idusuarios.add(cursoUsuario.getUsuarioId()));
+                optionalCurso.get().getCursoUsuarios()
+                        .forEach(cursoUsuario -> Idusuarios.add(cursoUsuario.getUsuarioId()));
                 List<Usuario> usuarios = usuarioClientRest.usuariosDeUnCurso(Idusuarios);
                 curso.setUsuarios(usuarios);
             }

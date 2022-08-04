@@ -21,19 +21,19 @@ public class CursoController {
     private CursoService cursoService;
 
     @GetMapping()
-    public List<Curso> listarCursos(){
+    public List<Curso> listarCursos() {
         return cursoService.obtenerCursos();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscarCurso(@PathVariable Long id){
+    public ResponseEntity<?> buscarCurso(@PathVariable Long id) {
         Optional<Curso> curso = cursoService.obtenerUsuariosPorCurso(id);
         return (curso != null ? ResponseEntity.ok(curso) : ResponseEntity.notFound().build());
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> guardarCurso(@Valid @RequestBody Curso curso, BindingResult result){
+    public ResponseEntity<?> guardarCurso(@Valid @RequestBody Curso curso, BindingResult result) {
         if (result.hasErrors()) {
             return validar(result);
         }
@@ -42,7 +42,8 @@ public class CursoController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> editarCurso(@Valid @RequestBody Curso cursoActualizado, BindingResult result , @PathVariable Long id){
+    public ResponseEntity<?> editarCurso(@Valid @RequestBody Curso cursoActualizado, BindingResult result,
+            @PathVariable Long id) {
         if (result.hasErrors()) {
             return validar(result);
         }
@@ -52,7 +53,7 @@ public class CursoController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> eliminarCurso(@PathVariable Long id){
+    public ResponseEntity<?> eliminarCurso(@PathVariable Long id) {
         Curso curso = cursoService.obtenerCursoPorId(id);
         if (curso != null) {
             cursoService.eliminarCurso(id);
@@ -63,9 +64,9 @@ public class CursoController {
 
     @PutMapping("/asignar-usuario/{idCurso}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> asignarUsuarioAlCurso(@RequestBody Usuario usuario, @PathVariable Long idCurso){
+    public ResponseEntity<?> asignarUsuarioAlCurso(@RequestBody Usuario usuario, @PathVariable Long idCurso) {
         Optional<Usuario> usuarioRecuperado = cursoService.asignarUsuario(usuario, idCurso);
-        if (usuarioRecuperado.isPresent()){
+        if (usuarioRecuperado.isPresent()) {
             return ResponseEntity.ok(usuarioRecuperado);
         }
         return ResponseEntity.notFound().build();
@@ -73,9 +74,9 @@ public class CursoController {
 
     @PostMapping("/crear-usuario/{idCurso}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> crearUsuarioAlCurso(@RequestBody Usuario usuario, @PathVariable Long idCurso){
+    public ResponseEntity<?> crearUsuarioAlCurso(@RequestBody Usuario usuario, @PathVariable Long idCurso) {
         Optional<Usuario> usuarioRecuperado = cursoService.crearUsuario(usuario, idCurso);
-        if (usuarioRecuperado.isPresent()){
+        if (usuarioRecuperado.isPresent()) {
             return ResponseEntity.ok(usuarioRecuperado);
         }
         return ResponseEntity.notFound().build();
@@ -83,9 +84,9 @@ public class CursoController {
 
     @DeleteMapping("/eliminar-usuario/{idCurso}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> eliminarUsuarioAlCurso(@RequestBody Usuario usuario, @PathVariable Long idCurso){
+    public ResponseEntity<?> eliminarUsuarioAlCurso(@RequestBody Usuario usuario, @PathVariable Long idCurso) {
         Optional<Usuario> usuarioRecuperado = cursoService.eliminarUsuario(usuario, idCurso);
-        if (usuarioRecuperado.isPresent()){
+        if (usuarioRecuperado.isPresent()) {
             return ResponseEntity.ok(usuarioRecuperado);
         }
         return ResponseEntity.notFound().build();
@@ -93,16 +94,16 @@ public class CursoController {
 
     @GetMapping("/listar-por-curso/{idCurso}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> listarUsuariosPorCurso(@PathVariable Long idCurso){
+    public ResponseEntity<?> listarUsuariosPorCurso(@PathVariable Long idCurso) {
         Optional<Curso> usuarioRecuperado = cursoService.obtenerUsuariosPorCurso(idCurso);
-        if (!usuarioRecuperado.isEmpty()){
+        if (!usuarioRecuperado.isEmpty()) {
             return ResponseEntity.ok(usuarioRecuperado);
         }
         return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/eliminar-curso-usuario/{idUsuario}")
-    public ResponseEntity<?> eliminarCursoUsuario(@PathVariable Long idUsuario){
+    public ResponseEntity<?> eliminarCursoUsuario(@PathVariable Long idUsuario) {
         cursoService.eliminarCursoUsuarioPorId(idUsuario);
         return ResponseEntity.noContent().build();
     }
@@ -110,8 +111,8 @@ public class CursoController {
     private ResponseEntity<Map<String, String>> validar(BindingResult result) {
         Map<String, String> errores = new HashMap<>();
         result.getFieldErrors().forEach(fieldError -> {
-            errores.put(fieldError.getField(), "El campo " +
-                    fieldError.getField() + " " + fieldError.getDefaultMessage());
+            errores.put(fieldError.getField(),
+                    "El campo " + fieldError.getField() + " " + fieldError.getDefaultMessage());
         });
         return ResponseEntity.badRequest().body(errores);
     }
