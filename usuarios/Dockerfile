@@ -1,24 +1,34 @@
+ARG NAME=usuarios
+
 FROM openjdk:17-jdk-alpine as builder
 
-WORKDIR /app/usuarios
+ARG NAME
+
+WORKDIR /app/$NAME
 
 COPY ./pom.xml /app
-COPY ./usuarios/.mvn ./.mvn
-COPY ./usuarios/mvnw .
-COPY ./usuarios/pom.xml .
+COPY ./$NAME/.mvn ./.mvn
+COPY ./$NAME/mvnw .
+COPY ./$NAME/pom.xml .
 
-RUN ./mvnw clean package -Dmaven.test.Skip -Dmaven.main.Skip -Dspring-boot.repackage.skip && rm -r ./target/
+RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repackage.skip && rm -r ./target/
+#RUN ./mvnw dependency:go-offline
+COPY ./$NAME/src ./src
 
-COPY ./usuarios/src ./src
-
-RUN ./mvnw clean package -DskipTest
+RUN ./mvnw clean package -DskipTests
 
 FROM openjdk:17-jdk-alpine
 
+ARG NAME
+
 WORKDIR /app
 
-COPY --from=builder  /app/usuarios/target/usuarios-0.0.1-SNAPSHOT.jar .
+RUN mkdir ./logs
 
-EXPOSE 8001
+ARG TARGET_FOLDER=/app/$NAME/target
+COPY --from=builder $TARGET_FOLDER/usuarios-0.0.1-SNAPSHOT.jar .
+ARG PORT_APP=8001
+ENV PORT $PORT_APP
+EXPOSE $PORT
 
-ENTRYPOINT ["java", "-jar", "usuarios-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "usuarios-0.0.1-SNAPSHOT.jar"]
