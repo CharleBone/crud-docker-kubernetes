@@ -23,21 +23,25 @@ public class CursoServiceImpl implements CursoService {
     private UsuarioClientRest usuarioClientRest;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Curso> obtenerCursos() {
         return cursoRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Curso obtenerCursoPorId(Long id) {
         return cursoRepository.findById(id).orElse(null);
     }
 
     @Override
+    @Transactional
     public Curso guardarCurso(Curso curso) {
         return cursoRepository.save(curso);
     }
 
     @Override
+    @Transactional
     public Curso editarCurso(Long id, Curso curso) {
         Curso cursoOriginal = cursoRepository.findById(id).orElse(null);
         if (cursoOriginal != null) {
@@ -47,6 +51,7 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
+    @Transactional
     public void eliminarCurso(Long id) {
         cursoRepository.deleteById(id);
     }
