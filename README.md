@@ -35,3 +35,11 @@
 | Crea un usuario y lo agrega al curso     | localhost:8002/crear-usuario/1    | POST     | Content-Type: application/json |
 | Asignar un usuario ya existente al curso | localhost:8002/asignar-usuario/1  | PUT      | Content-Type: application/json |
 | Eliminar un usuario de un curso          | localhost:8002/eliminar-usuario/1 | DELETE   |  Content-Type: application/json
+
+
+- Ejemplos
+  ![N|Solid](https://github.com/CharleBone/docker-services/blob/master/cursos/src/main/resources/static/images_ejemplo/put-asignar-usuario-curso.PNG)
+
+  ![N|Solid](https://github.com/CharleBone/docker-services/blob/master/cursos/src/main/resources/static/images_ejemplo/post-crear-usuario-desde-curso.PNG)
+
+  ![N|Solid](https://github.com/CharleBone/docker-services/blob/master/cursos/src/main/resources/static/images_ejemplo/delete-elimina-usuario-del-curso.PNG)
