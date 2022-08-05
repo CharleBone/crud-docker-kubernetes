@@ -25,4 +25,4 @@
 
 - Ejemplo de como insertar un nuevo curso
 
-![N|Solid](https://github.com/CharleBone/docker-services/blob/master/usuarios/src/main/resources/static/imagenes_ejemplo/post-user.PNG)
+![N|Solid](https://github.com/CharleBone/docker-services/blob/master/cursos/src/main/resources/static/images_ejemplo/post-curso.PNG)
