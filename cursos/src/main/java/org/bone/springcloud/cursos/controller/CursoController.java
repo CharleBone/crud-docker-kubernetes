@@ -48,7 +48,7 @@ public class CursoController {
             return validar(result);
         }
         Curso curso = cursoService.editarCurso(id, cursoActualizado);
-        return (curso != null ? ResponseEntity.ok(curso) : ResponseEntity.notFound().build());
+        return (curso != null ? ResponseEntity.ok(cursoService.guardarCurso(curso)) : ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
