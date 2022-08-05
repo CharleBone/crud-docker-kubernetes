@@ -29,8 +29,9 @@
 
 # CONEXIONES ENTRE MICROSERVICIOS
 
-| DESCRIPCION                                            | URL              | PETICION | HEADER  | RESPUESTA
-|--------------------------------------------------------|------------------|----------| ------ | ------ |
-| Lista Por curso las personas                           | localhost:8002/listar-por-curso/1  | GET      | | JSON | 
-| Asignar un usuario al curso                            | localhost:8002   | PUT      | Content-Type: application/json |
-| Eliminar un usuario de un curso                        | localhost:8002/1 | DELETE   |  Content-Type: application/json
+| DESCRIPCION                              | URL                               | PETICION | HEADER  | RESPUESTA
+|------------------------------------------|-----------------------------------|----------| ------ | ------ |
+| Lista Por curso las personas             | localhost:8002/listar-por-curso/1 | GET      | | JSON | 
+| Crea un usuario y lo agrega al curso     | localhost:8002/crear-usuario/1    | POST     | Content-Type: application/json |
+| Asignar un usuario ya existente al curso | localhost:8002/asignar-usuario/1  | PUT      | Content-Type: application/json |
+| Eliminar un usuario de un curso          | localhost:8002/eliminar-usuario/1 | DELETE   |  Content-Type: application/json
