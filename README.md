@@ -10,4 +10,4 @@
 | Eliminar Persona | localhost:8001/1  |  DELETE  | Content-Type: application/json
 
 
-[![N|Solid](https://https://github.com/CharleBone/docker-services/blob/master/usuarios/src/main/resources/static/imagenes_ejemplo/post-user.PNG)]
+[![N|Solid](https://github.com/CharleBone/docker-services/blob/master/usuarios/src/main/resources/static/imagenes_ejemplo/post-user.PNG)]
