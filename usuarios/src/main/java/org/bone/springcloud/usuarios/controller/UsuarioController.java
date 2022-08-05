@@ -49,7 +49,7 @@ public class UsuarioController {
             return validar(result);
         }
         Usuario usuario = usuarioService.editarUsuario(id, usuarioActualizado);
-        return (usuario != null ? ResponseEntity.ok(usuario) : ResponseEntity.notFound().build());
+        return (usuario != null ? ResponseEntity.ok(usuarioService.guardarUsuario(usuario)) : ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
