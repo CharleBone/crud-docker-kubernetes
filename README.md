@@ -26,3 +26,11 @@
 - Ejemplo de como insertar un nuevo curso
 
 ![N|Solid](https://github.com/CharleBone/docker-services/blob/master/cursos/src/main/resources/static/images_ejemplo/post-curso.PNG)
+
+# CONEXIONES ENTRE MICROSERVICIOS
+
+| DESCRIPCION                                            | URL              | PETICION | HEADER  | RESPUESTA
+|--------------------------------------------------------|------------------|----------| ------ | ------ |
+| Lista Por curso las personas                           | localhost:8002/listar-por-curso/1  | GET      | | JSON | 
+| Asignar un usuario al curso                            | localhost:8002   | PUT      | Content-Type: application/json |
+| Eliminar un usuario de un curso                        | localhost:8002/1 | DELETE   |  Content-Type: application/json
