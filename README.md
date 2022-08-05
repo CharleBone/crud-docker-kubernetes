@@ -9,5 +9,6 @@
 | Actualizar Persona | localhost:8001/1  | PUT      | Content-Type: application/json |
 | Eliminar Persona | localhost:8001/1  |  DELETE  | Content-Type: application/json
 
+- Ejemplo de como insertar un nuevo usuario
 
 ![N|Solid](https://github.com/CharleBone/docker-services/blob/master/usuarios/src/main/resources/static/imagenes_ejemplo/post-user.PNG)
